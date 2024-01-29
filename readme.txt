@@ -19,3 +19,12 @@
 
     to run: flask run
 
+# set and update db 
+    flask shell
+    from app.models import *
+    db.create_all()
+    exit()
+
+# verify that Students in the db is getting populated
+    sqlite3 instance/db.sqlite3
+    select * from student;
