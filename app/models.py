@@ -11,3 +11,4 @@ class Student(db.Model):
     name = db.Column(db.String(50), unique=True)    #string with 50 char limit
     course_id = db.Column(db.ForeignKey("course.id"))
     course = db.relationship("Course", back_populates="students")
+
