@@ -19,3 +19,8 @@
 
     to run: flask run
 
+# set and update db 
+    flask shell
+    from app.models import *
+    db.create_all()
+    exit()
