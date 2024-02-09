@@ -7,3 +7,8 @@ course_model = api.model("Course", {
     "name": fields.String
     #"students":
 })
+
+student_model = api.model("Student", {
+    "id": fields.Integer,
+    "name": fields.String
+})
