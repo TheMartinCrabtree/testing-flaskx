@@ -5,7 +5,7 @@ from .extensions import api
 student_model = api.model("Student", {
     "id": fields.Integer,
     "name": fields.String,
-    "course": fields.Nested(course_model)
+    # "course": fields.Nested(course_model)
 })
 
 course_model = api.model("Course", {
