@@ -1,6 +1,6 @@
 from flask_restx import Resource, Namespace
 
-from .api_models import course_model, student_model
+from .api_models import course_model, student_model, course_input_model
 from .models import Course, Student
 
 ns = Namespace("api")
@@ -18,7 +18,7 @@ class CourseAPI(Resource):
     def get(self):
         return Course.query.all()
     
-    @ns.expects(course_model)
+    @ns.expect(course_input_model)
     def post(self):
         return {}
     

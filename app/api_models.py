@@ -13,3 +13,7 @@ course_model = api.model("Course", {
     "name": fields.String,
     "students": fields.List(fields.Nested(student_model))
 })
+
+course_input_model = api.model("CourseInput", {
+    "name": fields.string,
+})
