@@ -18,6 +18,12 @@ class CourseAPI(Resource):
     def get(self):
         return Course.query.all()
     
+    @ns.expects(course_model)
+    def post(self):
+        return {}
+    
+
+    
 @ns.route("/students")
 class StudentAPI(Resource):
     @ns.marshal_list_with(student_model)
