@@ -65,3 +65,9 @@ class StudentAPI(Resource):
         student.course_id = ns.payload["course_id"]
         db.session.commit()
         return student
+    
+    def delete(self, id):
+        student = Student.query.get(id)
+        db.session.delete(student)
+        db.session.commit()
+        return {}, 204
