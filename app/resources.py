@@ -13,7 +13,7 @@ class Hello(Resource):
         return {"hello": "restx"}
     
 @ns.route("/courses")
-class CourseAPI(Resource):
+class CourseListAPI(Resource):
     # marshal will coerce course model into json friendly data
     @ns.marshal_list_with(course_model)
     def get(self):
@@ -29,10 +29,15 @@ class CourseAPI(Resource):
         # 201 status code on success
         return course, 201
     
-
+@ns.route("/courses/<int:id>")
+class CourseAPI(Resource):
+    @ns.marshal_with(course_model)
+    def get(self):
+        course=Course.query.get(id)
+        return course
     
 @ns.route("/students")
-class StudentAPI(Resource):
+class StudentListAPI(Resource):
     @ns.marshal_list_with(student_model)
     def get(self):
         return Student.query.all()
@@ -44,3 +49,19 @@ class StudentAPI(Resource):
         db.session.add(student)
         db.session.commit()
         return student, 201
+    
+@ns.route("/students/<int:id>")
+class StudentAPI(Resource):
+    @ns.marshal_with(student_model)
+    def get(self, id):
+        student = Student.query.get(id)
+        return student
+    
+    @ns.expect(student_input_model)
+    @ns.marshal_with(student_model)
+    def put(self, id):
+        student = Student.query.get(id)
+        student.name = ns.payload["name"]
+        student.course_id = ns.payload["course_id"]
+        db.session.commit()
+        return student
