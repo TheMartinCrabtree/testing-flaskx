@@ -22,3 +22,12 @@ student_input_model = api.model("StudentInput", {
     "name": fields.String,
     "course_id": fields.Integer,
 })
+
+spell_list_model = api.model("Spells", {
+
+})
+
+spell_input_model = api.model("SpellInput", {
+    "spell_id": fields.String,
+    "spell_name": fields.String,
+})
